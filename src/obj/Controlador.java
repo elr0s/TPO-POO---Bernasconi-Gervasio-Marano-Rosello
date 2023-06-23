@@ -3,6 +3,7 @@ package obj;
 import java.util.ArrayList;
 
 public class Controlador {
+    //Declarion de ArrayList de todas las clases
     ArrayList <Cliente> clientes = new ArrayList<Cliente>();
     ArrayList <Tecnico> tecnicos = new ArrayList<Tecnico>();
     ArrayList <ManoDeObra> manoDeObras = new ArrayList<ManoDeObra>();
@@ -10,7 +11,7 @@ public class Controlador {
     ArrayList <Vehiculo> vehiculos = new ArrayList<Vehiculo>();
     ArrayList <Reparacion> reparaciones = new ArrayList<Reparacion>();
     ArrayList <RepuestoXReparacion> repuestosXReparaciones = new ArrayList<RepuestoXReparacion>();
-
+    ArrayList <ManoXReparacion> manoXReparaciones = new ArrayList<ManoXReparacion>();
     public int nuevaReparacion(Cliente cliente, Vehiculo vehiculo){
 
     }
