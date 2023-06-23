@@ -1,6 +1,16 @@
 package obj;
 
+import java.util.ArrayList;
+
 public class Controlador {
+    ArrayList <Cliente> clientes = new ArrayList<Cliente>();
+    ArrayList <Tecnico> tecnicos = new ArrayList<Tecnico>();
+    ArrayList <ManoDeObra> manoDeObras = new ArrayList<ManoDeObra>();
+    ArrayList <Repuesto> repuestos = new ArrayList<Repuesto>();
+    ArrayList <Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+    ArrayList <Reparacion> reparaciones = new ArrayList<Reparacion>();
+    ArrayList <RepuestoXReparacion> repuestosXReparaciones = new ArrayList<RepuestoXReparacion>();
+
     public int nuevaReparacion(Cliente cliente, Vehiculo vehiculo){
 
     }
@@ -68,4 +78,6 @@ public class Controlador {
     private ManoDeObra buscarManoDeObra(int codigo){
 
     }
+
+    public
 }

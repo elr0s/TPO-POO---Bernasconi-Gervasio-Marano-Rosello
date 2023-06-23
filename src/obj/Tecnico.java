@@ -8,4 +8,8 @@ public class Tecnico {
 
     public boolean soyEseTecnico(String doc){
     }
+
+    public float calcularSueldo(String doc){
+
+    }
 }
