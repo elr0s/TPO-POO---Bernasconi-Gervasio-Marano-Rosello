@@ -69,7 +69,7 @@ public class ventana {
             }
         });
 
-        //estructurta para buscar reparacion
+        //estructurta para buscar reparacionn
         buscarBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -114,4 +114,6 @@ public class ventana {
 
     
 }
+
+
 
