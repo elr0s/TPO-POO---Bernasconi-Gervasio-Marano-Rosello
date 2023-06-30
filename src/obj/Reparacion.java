@@ -3,6 +3,7 @@ package obj;
 import java.time.LocalDate;
 
 public class Reparacion {
+    /*
     private int id;
     private LocalDate fechaIngreso;
     private Vehiculo vehiculoAReparar;
@@ -21,4 +22,6 @@ public class Reparacion {
     public void agregarManoDeObra(int reparacion, int manoDeObra){
 
     }
+
+     */
 }

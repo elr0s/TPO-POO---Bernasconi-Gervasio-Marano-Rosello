@@ -1,6 +1,7 @@
 package obj;
 
 public class Tecnico {
+    /*
     private String nombre;
     private String tipoDoc;
     private String doc;
@@ -12,4 +13,6 @@ public class Tecnico {
     public float calcularSueldo(String doc){
 
     }
+
+     */
 }

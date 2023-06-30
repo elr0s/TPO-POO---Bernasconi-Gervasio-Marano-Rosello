@@ -1,6 +1,7 @@
 package obj;
 
 public class Cliente {
+    /*
     private String nombre;
     private String tipoDoc;
     private String doc;
@@ -19,4 +20,6 @@ public class Cliente {
     public void actualizarCta(String doc, float precio){
 
     }
+
+     */
 }

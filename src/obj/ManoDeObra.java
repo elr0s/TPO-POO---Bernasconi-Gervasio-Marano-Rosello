@@ -1,6 +1,7 @@
 package obj;
 
 public class ManoDeObra {
+    /*
     private int codigo;
     private String descripcion;
     private float precio;
@@ -9,5 +10,8 @@ public class ManoDeObra {
 
     public boolean soyEsaManoDeObra(int codigo){
 
+
+
     }
+    */
 }

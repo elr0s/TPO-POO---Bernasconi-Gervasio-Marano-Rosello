@@ -3,6 +3,7 @@ package obj;
 import java.util.ArrayList;
 
 public class Controlador {
+    /*
     //Declarion de ArrayList de todas las clases
     ArrayList <Cliente> clientes = new ArrayList<Cliente>();
     ArrayList <Tecnico> tecnicos = new ArrayList<Tecnico>();
@@ -80,5 +81,5 @@ public class Controlador {
 
     }
 
-    public
+     */
 }

@@ -1,6 +1,7 @@
 package obj;
 
 public class Repuesto {
+    /*
     private int codigo;
     private String descripcion;
     private float precio;
@@ -8,4 +9,6 @@ public class Repuesto {
     public boolean soyEseRepuesto(int codigo){
 
     }
+
+     */
 }

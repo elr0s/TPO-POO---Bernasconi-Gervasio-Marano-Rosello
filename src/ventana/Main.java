@@ -1,3 +1,5 @@
+package ventana;
+
 import javax.swing.*;
 
 public class Main {
@@ -7,5 +9,7 @@ public class Main {
             public void run() {
                 new ventana();
             }
-        }
+        });
     }
+
+}
