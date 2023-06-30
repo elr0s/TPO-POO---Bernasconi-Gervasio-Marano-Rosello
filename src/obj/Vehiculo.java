@@ -8,7 +8,7 @@ public class Vehiculo {
     private Cliente dueño;
 
     public boolean soyEseVehiculo(String patente){
-        return this.patente==patente;
+        return this.patente == patente;
     }
     public void registrarVehiculo(String patente, String marca, String modelo, int año, Cliente dueño) {
         this.patente = patente;

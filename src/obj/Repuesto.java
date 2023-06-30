@@ -13,4 +13,8 @@ public class Repuesto {
     public float obtenerPrecio(){
         return this.precio;
     }
+
+    public int getCodigo(Repuesto r){
+        return this.codigo;
+    }
 }

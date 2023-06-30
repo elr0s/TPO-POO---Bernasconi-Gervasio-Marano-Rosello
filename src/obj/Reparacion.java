@@ -11,12 +11,17 @@ public class Reparacion {
     private String estado;
     private ArrayList <RepuestoXReparacion> respuestosReparacion = new ArrayList();
     private ArrayList <ManoXReparacion>     manoXReparaciones    = new ArrayList<>();
-    public boolean soyEsaReparacion(int id){
+
+    public boolean soyEsaReparacion(int id)
+    {
         return this.id==id;
+
     }
     public void terminarReparacion(){
+
         actualizarEstado("Terminadas");
     }
+
     public void setRepacion( int id, LocalDate fechaIngreso, Vehiculo vehiculoAReparar, Cliente cliente){
         this.id = id;
         this.fechaIngreso = fechaIngreso;
@@ -52,5 +57,9 @@ public class Reparacion {
     }
     public boolean estoyTerminada(){
         return this.estado=="Terminada";
+    }
+
+    public int getId(){
+        return this.id;
     }
 }

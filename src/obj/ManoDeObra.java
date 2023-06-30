@@ -19,7 +19,10 @@ public class ManoDeObra {
     }
 
     public float obtenerValH(){
-        return valorHora;
+        return this.valorHora;
     }
 
+    public int getCodigo(){
+        return this.codigo;
+    }
 }
