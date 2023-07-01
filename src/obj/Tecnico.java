@@ -53,8 +53,14 @@ public class Tecnico {
     }
 
     public float calcularSueldo(){
-
-        return 0 ;
+        float total = salarioBase;
+        for (ManoDeObra a: manosDeObra) {
+            ArrayList <ManoXReparacion> manosXReparaciones = a.getManosXReparaciones();
+            for (ManoXReparacion e: manosXReparaciones) {
+                total += e.obtenerDuracion() * a.obtenerValH();
+            }
+        }
+        return total;
     }
 
 }

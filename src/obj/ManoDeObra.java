@@ -1,11 +1,14 @@
 package obj;
 
+import java.util.ArrayList;
+
 public class ManoDeObra {
 
     private int codigo;
     private String descripcion;
     private Tecnico tecnico;
     private float valorHora;
+    private ArrayList<ManoXReparacion> manosXReparaciones = new ArrayList<>();
 
     public boolean soyEsaManoDeObra(int codigo){
         return this.codigo == codigo;
@@ -19,11 +22,20 @@ public class ManoDeObra {
         t.setManosDeObras(this);
     }
 
+    public void setManosXReparaciones(ManoXReparacion a){
+        this.manosXReparaciones.add(a);
+    }
     public float obtenerValH(){
         return this.valorHora;
     }
 
     public int getCodigo(){
         return this.codigo;
+    }
+    public ArrayList<ManoXReparacion> getManosXReparaciones(){
+        return this.manosXReparaciones;
+    }
+    public Tecnico getTecnico(){
+        return this.tecnico;
     }
 }

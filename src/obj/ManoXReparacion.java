@@ -10,5 +10,6 @@ public class ManoXReparacion {
     public void setManoXReparacion(ManoDeObra manoDeObra, Reparacion reparacion, float duracion){
         this.manoDeObra = manoDeObra;
         this.reparacion = reparacion;
+        manoDeObra.setManosXReparaciones(this);
     }
 }
