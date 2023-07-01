@@ -1,5 +1,6 @@
 package obj;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 public class Tecnico {
@@ -52,14 +53,18 @@ public class Tecnico {
         return  this.doc == doc;
     }
 
-    public float calcularSueldo(){
-        float total = salarioBase;
+    public double calcularSueldo(int mes){
+        double total;
+        double totalManoDeObra = 0;
         for (ManoDeObra a: manosDeObra) {
             ArrayList <ManoXReparacion> manosXReparaciones = a.getManosXReparaciones();
             for (ManoXReparacion e: manosXReparaciones) {
-                total += e.obtenerDuracion() * a.obtenerValH();
+                Reparacion rep = e.getReparacion();
+                if(rep.estoyTerminada() && rep.getFechaIngreso().getMonthValue()==mes)
+                    totalManoDeObra += e.obtenerDuracion() * a.obtenerValH();
             }
         }
+        total = getSalarioBase() + (totalManoDeObra * 0.10);
         return total;
     }
 
