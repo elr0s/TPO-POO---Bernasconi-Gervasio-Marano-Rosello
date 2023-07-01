@@ -37,6 +37,7 @@ public class ventana {
                 JTextField dato3 = new JTextField(20);
                 JTextField dato4 = new JTextField(20);
                 JTextField dato5 = new JTextField(20);
+                JTextField dato6 = new JTextField(20);
                 
                 //BOTON BUSCAR
                 JButton registrarButton = new JButton("Registrar");
@@ -52,6 +53,8 @@ public class ventana {
                 panel.add(dato4);
                 panel.add(new JLabel("Patente del vehiculo:"));
                 panel.add(dato5);
+                panel.add(new JLabel("Empleado a cargo:"));
+                panel.add(dato6);
                 panel.add(registrarButton);
 
                 registrarButton.addActionListener(new ActionListener() {
