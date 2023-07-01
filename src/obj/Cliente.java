@@ -25,9 +25,12 @@ public class Cliente {
             return true;
         }
     }
+    public  String getDoc(Cliente c){
+        return this.doc;
+    }
     public void actualizarCta(float precio){
         ctaCte += precio;
     }
 
-
 }
+

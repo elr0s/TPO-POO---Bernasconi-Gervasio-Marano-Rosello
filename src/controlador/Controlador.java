@@ -16,7 +16,13 @@ public class Controlador {
     ArrayList <ManoXReparacion> manoXReparaciones = new ArrayList<ManoXReparacion>();
 
     public int nuevaReparacion(Cliente cliente, Vehiculo vehiculo){
+        cliente = buscarCliente(cliente.getDoc(cliente));
+        vehiculo = buscarVehiculo(vehiculo.getPatente(vehiculo));
+        if (cliente == null){
+            //msj de que debe registrar al cliente y
+            // un cartel que diga registrar cliente
 
+        }
     }
 
     public boolean vehiculoRegistrado(String patente){
@@ -51,7 +57,23 @@ public class Controlador {
         vehiculos.add(v);
     }
 
-    public void terminarReparacion(int codigo, String estado){
+    public  void actualizarEstado(int idRep,String estado){
+        //para pasarlo de pendiente a en proceso
+        Reparacion rep = buscarReparacion(idRep);
+        if (rep != null){
+            rep.actualizarEstado(estado);
+        }
+    }
+    public void terminarReparacion(int idRep){
+        //para pasarlo de en proceso a terminada
+        Reparacion rep = buscarReparacion(idRep);
+        if (rep != null){
+            rep.actualizarEstado("Terminada");
+        }
+    }
+
+    public void retirarVehiculo(Reparacion rep){
+        //aca se actualiza el estado de terminada a retirada
 
     }
 

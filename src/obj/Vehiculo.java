@@ -17,4 +17,8 @@ public class Vehiculo {
         this.año     = año;
         this.dueño   = dueño;
     }
+
+    public String getPatente(Vehiculo v){
+        return this.patente;
+    }
 }
