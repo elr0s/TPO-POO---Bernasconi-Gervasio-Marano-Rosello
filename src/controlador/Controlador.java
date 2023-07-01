@@ -51,7 +51,23 @@ public class Controlador {
         vehiculos.add(v);
     }
 
-    public void terminarReparacion(int codigo, String estado){
+    public  void actualizarEstado(int idRep,String estado){
+        //para pasarlo de pendiente a en proceso
+        Reparacion rep = buscarReparacion(idRep);
+        if (rep != null){
+            rep.actualizarEstado(estado);
+        }
+    }
+    public void terminarReparacion(int idRep){
+        //para pasarlo de en proceso a terminada
+        Reparacion rep = buscarReparacion(idRep);
+        if (rep != null){
+            rep.actualizarEstado("Terminada");
+        }
+    }
+
+    public void retirarVehiculo(Reparacion rep){
+        //aca se actualiza el estado de terminada a retirada
 
     }
 
