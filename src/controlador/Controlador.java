@@ -2,7 +2,7 @@ package controlador;
 
 import java.util.ArrayList;
 
-import exception.ClienteException;
+import exception.*;
 import obj.*;
 
 public class Controlador {
@@ -16,7 +16,7 @@ public class Controlador {
     ArrayList <RepuestoXReparacion> repuestosXReparaciones = new ArrayList<RepuestoXReparacion>();
     ArrayList <ManoXReparacion> manoXReparaciones = new ArrayList<ManoXReparacion>();
 
-    public int nuevaReparacion(Cliente cliente, Vehiculo vehiculo){
+    public int nuevaReparacion(Cliente cliente, Vehiculo vehiculo) throws ClienteException, VehiculoException{
         cliente = buscarCliente(cliente.getDoc(cliente));
         vehiculo = buscarVehiculo(vehiculo.getPatente(vehiculo));
         if (cliente == null){
@@ -32,7 +32,7 @@ public class Controlador {
         }
     }
 
-    public boolean vehiculoRegistrado(String patente){
+    public boolean vehiculoRegistrado(String patente) throws VehiculoException{
         Vehiculo v = buscarVehiculo(patente);
         if(v != null){
             return true;
@@ -41,7 +41,7 @@ public class Controlador {
         }
     }
 
-    public boolean clienteRegistrado(String doc){
+    public boolean clienteRegistrado(String doc) throws ClienteException{
         Cliente c = buscarCliente(doc);
         if(c != null){
             return true;
@@ -64,14 +64,14 @@ public class Controlador {
         vehiculos.add(v);
     }
 
-    public  void actualizarEstado(int idRep,String estado){
+    public  void actualizarEstado(int idRep,String estado) throws ReparacionException{
         //para pasarlo de pendiente a en proceso
         Reparacion rep = buscarReparacion(idRep);
         if (rep != null){
             rep.actualizarEstado(estado);
         }
     }
-    public void terminarReparacion(int idRep){
+    public void terminarReparacion(int idRep) throws ReparacionException{
         //para pasarlo de en proceso a terminada
         Reparacion rep = buscarReparacion(idRep);
         if (rep != null){
@@ -84,7 +84,7 @@ public class Controlador {
 
     }
 
-    public boolean mePasoEnDeuda(String doc, float precio){
+    public boolean mePasoEnDeuda(String doc, float precio) throws ClienteException{
         Cliente c = buscarCliente(doc);
         if(c != null){
             c.mePasoEnDeuda(precio);
@@ -94,7 +94,7 @@ public class Controlador {
         return false; //Sacar y agregar excepcion por si no lo encuentra
     }
 
-    public void agregarACtaCte(String doc, float precio){
+    public void agregarACtaCte(String doc, float precio) throws ClienteException{
         Cliente c = buscarCliente(doc);
         if(c != null && !mePasoEnDeuda(doc,precio)){
             c.actualizarCta(precio);
@@ -123,13 +123,13 @@ public class Controlador {
 
     }
 
-    private Reparacion buscarReparacion(int codigo){
+    private Reparacion buscarReparacion(int codigo) throws ReparacionException{
         for (Reparacion r : reparaciones) {
             if (r.soyEsaReparacion(codigo)) {
                 return r;
             }
         }
-        return  null; //sacar con excepcion
+        throw new ReparacionException("La reparacion con el id "+codigo+" no se encuentra registada");
     }
 
     private Cliente buscarCliente(String doc) throws ClienteException {
@@ -138,44 +138,44 @@ public class Controlador {
                 return c;
             }
         }
-        throw new ClienteException("El cliente con el documento" + doc + "no esta registrado");
+        throw new ClienteException("El cliente con el documento " + doc + "no esta registrado");
     }
 
-    private Vehiculo buscarVehiculo(String patente){
+    private Vehiculo buscarVehiculo(String patente) throws VehiculoException {
             for (Vehiculo v: vehiculos) {
                 if(v.soyEseVehiculo(patente)){
                     return v;
                 }
-            }//sacar y agregar excepcion de que si no lo encuentra msj
-            return null;
+            }
+            throw new VehiculoException("El vehiculo con patente " + patente + "No esta regisrtrado");
     }
 
-    private Tecnico buscarTecnico(String doc){
+    private Tecnico buscarTecnico(String doc) throws TecnicoException {
         for (Tecnico t :
                 tecnicos) {
             if (t.soyEseTecnico(doc)){
                 return t;
             }
-        }//sacar y agregar excepcion de que si no lo encuentra msj
-        return null;
+        }
+        throw new TecnicoException("El tecnico con el documento " + doc + "no esta registrado");
     }
 
-    private Repuesto buscarRepuesto(int codigo){
+    private Repuesto buscarRepuesto(int codigo) throws RepuestoException {
         for (Repuesto r: repuestos) {
             if (r.soyEseRepuesto(codigo)){
                 return r;
             }
-        }//sacar y agregar excepcion de que si no lo encuentra msj
-        return null;
+        }
+        throw new RepuestoException("El repuesto con el id "+ codigo + "no esta registrado");
     }
 
-    private ManoDeObra buscarManoDeObra(int codigo){
+    private ManoDeObra buscarManoDeObra(int codigo) throws ManoDeObraException {
         for (ManoDeObra m:manoDeObras) {
             if (m.soyEsaManoDeObra(codigo)){
                 return m;
             }
-        }//sacar y agregar excepcion de que si no lo encuentra msj
-        return null;
+        }
+        throw new ManoDeObraException("La mano de obra "+codigo+ " no se encuentra registrada");
     }
 
 
