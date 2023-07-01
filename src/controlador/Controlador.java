@@ -16,7 +16,13 @@ public class Controlador {
     ArrayList <ManoXReparacion> manoXReparaciones = new ArrayList<ManoXReparacion>();
 
     public int nuevaReparacion(Cliente cliente, Vehiculo vehiculo){
+        cliente = buscarCliente(cliente.getDoc(cliente));
+        vehiculo = buscarVehiculo(vehiculo.getPatente(vehiculo));
+        if (cliente == null){
+            //msj de que debe registrar al cliente y
+            // un cartel que diga registrar cliente
 
+        }
     }
 
     public boolean vehiculoRegistrado(String patente){
