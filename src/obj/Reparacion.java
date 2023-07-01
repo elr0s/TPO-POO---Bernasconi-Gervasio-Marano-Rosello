@@ -62,4 +62,7 @@ public class Reparacion {
     public int getId(){
         return this.id;
     }
+    public LocalDate getFechaIngreso(){
+        return this.fechaIngreso;
+    }
 }

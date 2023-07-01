@@ -4,6 +4,9 @@ public class ManoXReparacion {
     private ManoDeObra manoDeObra;
     private Reparacion reparacion;
     private float duracion;
+    public Reparacion getReparacion(){
+        return this.reparacion;
+    }
     public float obtenerDuracion(){
         return  manoDeObra.obtenerValH()*duracion;
     }
