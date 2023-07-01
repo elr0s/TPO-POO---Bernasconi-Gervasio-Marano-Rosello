@@ -2,6 +2,7 @@ package controlador;
 
 import java.util.ArrayList;
 
+import exception.ClienteException;
 import obj.*;
 
 public class Controlador {
@@ -21,7 +22,13 @@ public class Controlador {
         if (cliente == null){
             //msj de que debe registrar al cliente y
             // un cartel que diga registrar cliente
-
+        } else if (vehiculo == null) {
+            //msj de que debe registrar al vehiculo y
+            // un cartel que diga registrar vehiculo
+        }else {
+            Reparacion rep = new Reparacion();
+           //rep.setRepacion();
+            //ver como hacer para que cree a reparacion y parametros etc
         }
     }
 
@@ -88,7 +95,10 @@ public class Controlador {
     }
 
     public void agregarACtaCte(String doc, float precio){
-
+        Cliente c = buscarCliente(doc);
+        if(c != null && !mePasoEnDeuda(doc,precio)){
+            c.actualizarCta(precio);
+        }
     }
 
     public float calcularSueldo(String doc){
@@ -122,13 +132,13 @@ public class Controlador {
         return  null; //sacar con excepcion
     }
 
-    private Cliente buscarCliente(String doc){
+    private Cliente buscarCliente(String doc) throws ClienteException {
         for (Cliente c: clientes) {
             if(c.soyEseCleinte(doc)) {
                 return c;
             }
-        }//sacar y agregar excepcion de que si no lo encuentra msj
-        return null;
+        }
+        throw new ClienteException("El cliente con el documento" + doc + "no esta registrado");
     }
 
     private Vehiculo buscarVehiculo(String patente){
