@@ -8,31 +8,30 @@ public class Tecnico {
     private String tipoDoc;
     private String doc;
     private float salarioBase;
-    private List<ManoDeObra> manosDeObra;
+    private ArrayList<ManoDeObra> manosDeObra = new ArrayList<>();
 
     // Métodos setters
     public void setNombre(String nombre) {
-
         this.nombre = nombre;
     }
 
     public void setTipoDoc(String tipoDoc) {
-
         this.tipoDoc = tipoDoc;
     }
 
     public void setDoc(String doc) {
-
         this.doc = doc;
     }
 
     public void setSalarioBase(float salarioBase) {
-
         this.salarioBase = salarioBase;
+    }
+
+    public void setManosDeObras(ManoDeObra a){
+        this.manosDeObra.add(a);
     }
     // Métodos getters
     public String getNombre() {
-
         return nombre;
     }
 
@@ -42,23 +41,21 @@ public class Tecnico {
     }
 
     public String getDoc() {
-
         return doc;
     }
 
     public float getSalarioBase() {
-
         return salarioBase;
     }
 
     public boolean soyEseTecnico(String doc){
-
         return  this.doc == doc;
     }
 
-    /*public float calcularSueldo(String doc){
-    }*/
+    public float calcularSueldo(){
 
-     
+        return 0 ;
+    }
+
 }
 

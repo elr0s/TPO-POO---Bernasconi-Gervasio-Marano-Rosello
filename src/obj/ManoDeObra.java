@@ -16,6 +16,7 @@ public class ManoDeObra {
         this.descripcion = desc;
         this.tecnico = t;
         this.valorHora = valH;
+        t.setManosDeObras(this);
     }
 
     public float obtenerValH(){
