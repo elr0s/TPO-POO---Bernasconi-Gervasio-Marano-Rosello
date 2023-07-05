@@ -16,6 +16,16 @@ public class Controlador {
     ArrayList <RepuestoXReparacion> repuestosXReparaciones = new ArrayList<RepuestoXReparacion>();
     ArrayList <ManoXReparacion> manoXReparaciones = new ArrayList<ManoXReparacion>();
 
+    private static Controlador instancia;
+    private Controlador(){
+        //cargar datos falsos?
+    }
+    public static Controlador getInstancia(){
+        if(instancia == null){
+            instancia = new Controlador();
+        }
+        return instancia;
+    }
     public int nuevaReparacion(Cliente cliente, Vehiculo vehiculo) throws ClienteException, VehiculoException{
         cliente = buscarCliente(cliente.getDoc(cliente));
         vehiculo = buscarVehiculo(vehiculo.getPatente(vehiculo));
@@ -177,6 +187,7 @@ public class Controlador {
         }
         throw new ManoDeObraException("La mano de obra "+codigo+ " no se encuentra registrada");
     }
+
 
 
 }
