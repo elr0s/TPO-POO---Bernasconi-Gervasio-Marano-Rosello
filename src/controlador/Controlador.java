@@ -1,5 +1,6 @@
 package controlador;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import exception.*;
@@ -26,20 +27,20 @@ public class Controlador {
         }
         return instancia;
     }
-    public int nuevaReparacion(Cliente cliente, Vehiculo vehiculo) throws ClienteException, VehiculoException{
-        cliente = buscarCliente(cliente.getDoc(cliente));
-        vehiculo = buscarVehiculo(vehiculo.getPatente(vehiculo));
+    public int nuevaReparacion(String doc, String patente) throws ClienteException, VehiculoException{
+        Cliente cliente = buscarCliente(doc);
+        Vehiculo vehiculo = buscarVehiculo(patente);
         if (cliente == null){
             //msj de que debe registrar al cliente y
             // un cartel que diga registrar cliente
         } else if (vehiculo == null) {
             //msj de que debe registrar al vehiculo y
             // un cartel que diga registrar vehiculo
-        }else {
-            Reparacion rep = new Reparacion();
-           //rep.setRepacion();
-            //ver como hacer para que cree a reparacion y parametros etc
         }
+        Reparacion rep = new Reparacion();
+        rep.setRepacion(0, LocalDate.now(),vehiculo,cliente);
+        //ver como hacer para que cree a reparacion y parametros etc
+        return rep.getId();
     }
 
     public boolean vehiculoRegistrado(String patente) throws VehiculoException{
@@ -111,9 +112,12 @@ public class Controlador {
         }
     }
 
+    /*
     public float calcularSueldo(String doc){
 
     }
+
+     */
 
     public void agregarRepuesto(int codigoReparacion, Repuesto repuesto, int cantidad){
 
@@ -146,6 +150,8 @@ public class Controlador {
         for (Cliente c: clientes) {
             if(c.soyEseCleinte(doc)) {
                 return c;
+            }else{
+                return null;
             }
         }
         throw new ClienteException("El cliente con el documento " + doc + "no esta registrado");
@@ -155,7 +161,8 @@ public class Controlador {
             for (Vehiculo v: vehiculos) {
                 if(v.soyEseVehiculo(patente)){
                     return v;
-                }
+                }else
+                    return null;
             }
             throw new VehiculoException("El vehiculo con patente " + patente + "No esta regisrtrado");
     }

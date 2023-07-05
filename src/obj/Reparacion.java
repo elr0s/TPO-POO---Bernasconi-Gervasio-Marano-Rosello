@@ -52,7 +52,7 @@ public class Reparacion {
     public float obtenerTotal(){
         float  total = 0;
         for (RepuestoXReparacion r : respuestosReparacion)
-            total += r.subTotalRep();
+            total += r.subTotalRep ();
         return total;
     }
     public boolean estoyTerminada(){

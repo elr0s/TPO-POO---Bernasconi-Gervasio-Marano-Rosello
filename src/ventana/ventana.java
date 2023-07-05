@@ -1,122 +1,85 @@
 package ventana;
 
+import obj.*;
+import exception.*;
+
 import javax.swing.*;
+
+import controlador.Controlador;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
-// CREAR ARRAY PARA QUE NO REPITAN LOS ID
-// QUE SE GENEREN SOLOS LOS ID (I++1)
-// EN LA ESTRUCTURA "BUSCAR" VALIDAR Q EXISTA EL ID Y SINO IMPRIMIR MENSAJE DE Q NO EXISTE Y QUE SE MUESTREN LOS DATOS ASOCIADOS AL ID RERPARACION 
-// AGREGAR EL PACKAGE DE LOS OBJETOS PARA VALIDAR QUE CORRESPONDAN A SU TIPO Y ADPATARLOS A LOS QUE SE INGRESAN ACA
 
 public class ventana {
     private JFrame frame;
-    private JButton registrarBtn;
-    private JButton buscarBtn;
+    private JTextField txtCliente;
+    private JTextField txtVehiculo;
+    private JButton btnRegistrar;
 
     public ventana() {
-        frame = new JFrame("Sistema de Reparaciones");
+        frame = new JFrame("Registrar Reparación");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
 
-        registrarBtn = new JButton("Registrar Reparación");
-        buscarBtn = new JButton("Buscar Reparación");
+        // Componentes de la ventana
+        JLabel lblCliente = new JLabel("Cliente:");
+        JLabel lblVehiculo = new JLabel("Vehículo:");
+        txtCliente = new JTextField(20);
+        txtVehiculo = new JTextField(20);
+        btnRegistrar = new JButton("Registrar");
 
-        //estructurta para registrar
-        registrarBtn.addActionListener(new ActionListener() {
+        // Acción del botón Registrar
+        btnRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame registrarFrame = new JFrame("Registrar Reparación");
-                JPanel panel = new JPanel();
-                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                // Obtener los datos ingresados
+                String cliente = txtCliente.getText();
+                String vehiculo = txtVehiculo.getText();
 
-                // CASILLAS DE TXT
-                JTextField dato1 = new JTextField(20);
-                JTextField dato2 = new JTextField(20);
-                JTextField dato3 = new JTextField(20);
-                JTextField dato4 = new JTextField(20);
-                JTextField dato5 = new JTextField(20);
-                JTextField dato6 = new JTextField(20);
-                
-                //BOTON BUSCAR
-                JButton registrarButton = new JButton("Registrar");
-
-                //ATRIBUTOS
-                panel.add(new JLabel("Doc:"));
-                panel.add(dato1);
-                panel.add(new JLabel("ID de Reparacion:"));
-                panel.add(dato2);
-                panel.add(new JLabel("FechaIngreso de reparacion:"));
-                panel.add(dato3);
-                panel.add(new JLabel("Descripcion de ManoDeObra:"));
-                panel.add(dato4);
-                panel.add(new JLabel("Patente del vehiculo:"));
-                panel.add(dato5);
-                panel.add(new JLabel("Empleado a cargo:"));
-                panel.add(dato6);
-                panel.add(registrarButton);
-
-                registrarButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        //aca agregar la lógica para procesar los datos ingresados y registrar la reparación
-                        JOptionPane.showMessageDialog(null, "Reparación registrada exitosamente.");
-                        registrarFrame.dispose();
+                try {
+                    // Validar si el cliente está registrado
+                    if (!Controlador.getInstancia().clienteRegistrado(cliente)) {
+                        JOptionPane.showMessageDialog(frame, "El cliente no está registrado. Por favor, registre al cliente antes de continuar.");
+                        return;
                     }
-                });
 
-                registrarFrame.add(panel);
-                registrarFrame.setSize(300, 300);
-                registrarFrame.setVisible(true);
+                    // Validar si el vehículo está registrado
+                    if (!Controlador.getInstancia().vehiculoRegistrado(vehiculo)) {
+                        JOptionPane.showMessageDialog(frame, "El vehículo no está registrado. Por favor, registre el vehículo antes de continuar.");
+                        return;
+                    }
+
+                    // Obtener instancias de Cliente y Vehiculo
+                    /*Cliente clienteObj = Controlador.getInstancia().buscarCliente(cliente);
+                    Vehiculo vehiculoObj = Controlador.getInstancia().buscarVehiculo(vehiculo);
+                    */
+
+
+                    // Crear una nueva reparación
+                    int idReparacion = Controlador.getInstancia().nuevaReparacion(cliente, vehiculo);
+
+                    JOptionPane.showMessageDialog(frame, "Reparación registrada con éxito. ID de Reparación: " + idReparacion);
+                } catch (ClienteException ex) {
+                    JOptionPane.showMessageDialog(frame, "Error al buscar el cliente: " + ex.getMessage());
+                } catch (VehiculoException ex) {
+                    JOptionPane.showMessageDialog(frame, "Error al buscar el vehículo: " + ex.getMessage());
+                }
             }
         });
 
-        //estructurta para buscar reparacionn
-        buscarBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFrame buscarFrame = new JFrame("Buscar Reparación");
-                JPanel panel = new JPanel();
-                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        // Agregar componentes a la ventana
+        frame.add(lblCliente);
+        frame.add(txtCliente);
+        frame.add(lblVehiculo);
+        frame.add(txtVehiculo);
+        frame.add(btnRegistrar);
 
-                // CASILLAS DE TXT
-                JTextField datoBusqueda1 = new JTextField(20);
-                
-                // BOTON BUSCAR
-                JButton buscarButton = new JButton("Buscar");
-
-                //ATRIBUTO
-                panel.add(new JLabel("ID de Reparacion:"));
-                panel.add(datoBusqueda1);
-
-                panel.add(buscarButton);
-
-                buscarButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        // aca la lógica para buscar utilizando los datos ingresados
-                        // y mostrar los resultados correspondientes
-                        JOptionPane.showMessageDialog(null, "Resultados de búsqueda:\n" +
-                                "ID de Reparacion:: " + datoBusqueda1.getText() + "\n");
-                        buscarFrame.dispose();
-                    }
-                });
-
-                buscarFrame.add(panel);
-                buscarFrame.setSize(300, 300);
-                buscarFrame.setVisible(true);
-            }
-        });
-
-        frame.add(registrarBtn);
-        frame.add(buscarBtn);
-        frame.setSize(300, 100);
+        // Ajustar tamaño y hacer visible la ventana
+        frame.setSize(300, 200);
         frame.setVisible(true);
     }
-
-    
 }
-
-
-
